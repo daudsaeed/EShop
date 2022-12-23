@@ -1,0 +1,24 @@
+.cartItem {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #eee;
+  margin-bottom: 0.625rem;
+  cursor: pointer;
+  border-radius: 4px;
+  &__imageContainer {
+    flex: 1 1 30%;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &__detail {
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,0 +1,39 @@
+.cart-dropdown {
+  position: absolute;
+  border-radius: 4px;
+  right: 0.625rem;
+  background-color: var(--color-light);
+  height: 400px;
+  z-index: 500;
+  width: 300px;
+  transform: translateY(220px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+  padding: 0.625rem;
+  animation: cartDropdownShow 0.2s ease;
+
+  &__cartItems {
+    flex: 1 1 90%;
+    overflow-y: scroll;
+    padding: 0 0.625rem;
+  }
+
+  button {
+    flex: 1 1 10%;
+  }
+}
+
+@keyframes cartDropdownShow {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

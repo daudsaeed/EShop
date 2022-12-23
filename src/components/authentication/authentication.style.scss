@@ -1,0 +1,203 @@
+// ######################################## LOGIN AND REGISTRATION FORM #################################
+
+.login {
+  position: fixed;
+  z-index: 500;
+  height: 100%;
+  width: 25%;
+  right: 0;
+  top: 0;
+  background-color: var(--color-light);
+  overflow: hidden;
+
+  display: flex;
+  animation: formWidthAnimation 0.3s;
+
+  // Login box
+  &__boxOne {
+    flex: 1 0 100%;
+  }
+
+  @keyframes formAnimation {
+    0% {
+      opacity: 0.5;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  // Sign up box
+  &__boxTwo {
+    flex: 1 0 100%;
+  }
+
+  // Styling the form header
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--line);
+    font-weight: 500;
+    padding: 0.9375rem 1.25rem;
+
+    &-icon {
+      font-size: 1.25rem;
+      cursor: pointer;
+      transform: all 0.3s;
+
+      &:hover {
+        color: var(--color-secondary);
+        animation: spinit 3s infinite;
+      }
+
+      // Close the form icon animation
+      @keyframes spinit {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        50% {
+          transform: rotate(180deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+
+  //  styling the form
+  &__form {
+    margin: 1.25rem;
+
+    .form-group label {
+      display: block;
+      color: var(--color-exlight);
+
+      .req {
+        color: red;
+      }
+    }
+
+    .form-control {
+      background-color: var(--color-light);
+      border: 1px solid #a4a4a4;
+      padding: 0.455rem;
+      width: 100%;
+
+      &:focus {
+        border: 1px solid var(--color-secondary);
+        outline: none;
+      }
+    }
+
+    .form-submit {
+      width: 100%;
+      font: inherit;
+      background-color: var(--color-secondary);
+      border: none;
+      margin-top: 0.625rem;
+      padding: 0.455rem;
+      color: var(--color-light);
+      font-weight: 500;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  // Styling the login detail
+  &__detail {
+    margin: 1.25rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .light {
+    color: var(--color-exlight);
+  }
+
+  .underline {
+    transition: all 0.3s;
+
+    &:hover {
+      color: var(--color-secondary);
+    }
+  }
+}
+
+// form animation
+
+@keyframes formWidthAnimation {
+  0% {
+    width: 0%;
+    opacity: 0.5;
+  }
+
+  100% {
+    width: 25%;
+    opacity: 1;
+  }
+}
+
+// ################################ Styling the Overlay #############################
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+// Google login button styling
+.google-btn {
+  margin-top: 0.725rem;
+  width: 100%;
+  height: 2.625rem;
+  background-color: #4285f4;
+  border-radius: 2px;
+  // box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.google-btn .google-icon-wrapper {
+  flex: 0 0 15%;
+  height: 2.5rem;
+  margin-left: 1px;
+  border-radius: 2px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.google-btn .google-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+.google-btn .btn-text {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  flex: 1;
+  text-transform: uppercase;
+  font: inherit;
+}
+.google-btn:hover {
+  // box-shadow: 0 0 6px #4285f4;
+  opacity: 0.9;
+}
+.google-btn:active {
+  background: #1669f2;
+}

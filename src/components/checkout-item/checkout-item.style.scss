@@ -1,0 +1,42 @@
+.checkoutItem {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 0.625rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  div {
+    flex: 0 0 20%;
+    text-align: center;
+  }
+
+  &__product {
+    img {
+      width: 60%;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+  }
+
+  &__quantity {
+    display: flex;
+    justify-content: center;
+    button {
+      border: none;
+      font-weight: bold;
+      font-family: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    p {
+      margin: 0 0.625rem;
+    }
+  }
+
+  &__remove {
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}

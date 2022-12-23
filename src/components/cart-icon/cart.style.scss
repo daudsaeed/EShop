@@ -1,0 +1,17 @@
+.cart-icon {
+  position: relative;
+  height: 20px;
+  cursor: pointer;
+  &__svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__count {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  font-family: "Jost";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #eee;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #000;
+  --color-secondary: #b02f2e;
+  --color-light: #fefbe9;
+  --color-exlight: #a4a4a4;
+  --line: 2px solid #b02f2e;
+  --shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}

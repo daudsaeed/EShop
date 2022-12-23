@@ -1,0 +1,85 @@
+.product-card {
+  flex: 0 0 20%;
+  height: 25rem;
+  text-align: center;
+  border-radius: 2px;
+  overflow: hidden;
+  &__imageContainer {
+    position: relative;
+    height: 70%;
+    overflow: hidden;
+    cursor: pointer;
+
+    // Image
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 1;
+      transition: all 0.5s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.2);
+      opacity: 0.9;
+    }
+
+    // Add to the cart button
+    &-btn {
+      background-color: var(--color-secondary);
+      flex: 1 1 50%;
+    }
+    // intialy it wil be hidden when hover oer the image it will be displayed
+    &-detail {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--color-secondary);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      transform: translateY(50px);
+
+      // Add to the cart button
+
+      button {
+        text-transform: uppercase;
+        font: inherit;
+        background-color: transparent;
+        color: inherit;
+        border: none;
+        cursor: pointer;
+      }
+
+      // Add delete and amount show areas
+      button:not(:last-of-type),
+      p {
+        flex: 1 1 auto;
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 0.375rem;
+        background-color: #9c201c;
+      }
+    }
+
+    &:hover &-detail {
+      transform: translateY(0);
+    }
+  }
+
+  &__detail {
+    margin-top: 0.625rem;
+    &-title {
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+
+    &-price {
+      // color: ;
+      font-weight: lighter;
+    }
+  }
+}
