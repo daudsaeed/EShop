@@ -17,4 +17,15 @@
       text-align: center;
     }
   }
+
+  &__footer {
+    margin-top: 0.625rem;
+    width: 100%;
+    text-align: right;
+
+    &-total {
+      font-weight: 500;
+      font-size: 1.25rem;
+    }
+  }
 }

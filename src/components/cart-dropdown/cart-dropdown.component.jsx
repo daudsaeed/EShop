@@ -26,9 +26,10 @@ const CartDropdown = () => {
           <CartItem cartItem={cartItem} />
         ))}
       </div>
-      <Button>
-        <Link to="/checkout">Go to checkout</Link>
-      </Button>
+
+      <Link to="/checkout">
+        <Button> Go to checkout</Button>
+      </Link>
     </div>
   );
 };
