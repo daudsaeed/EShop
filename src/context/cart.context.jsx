@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useReducer } from "react";
+import createAction from "../utils/reducer/reducer.util";
 
 // helper Methods
 const addToCart = (item, cartItems, checkout) => {
@@ -54,17 +55,65 @@ export const CartContext = createContext({
   cartTotal: 0,
 });
 
-export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
-  const [cartTotal, setCartTotal] = useState(0);
+const INTIAL_STATE = {
+  cartItems: [],
+  cartTotal: 0,
+};
 
-  useEffect(() => {
-    const newCartTotal = cartItems.reduce(
+const CART = {
+  SET_CART_ITEMS: "SET_CART_ITEMS",
+  SET_CART_TOTAL: "SET_CART_TOTAL",
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case CART.SET_CART_ITEMS:
+      return {
+        ...state,
+        ...payload,
+      };
+
+    default:
+      throw new Error(`This type ${type} was not handled in cartReducer`);
+  }
+};
+
+export const CartProvider = ({ children }) => {
+  // const [cartItems, setCartItems] = useState([]);
+  // const [cartTotal, setCartTotal] = useState(0);
+  const [{ cartItems, cartTotal }, dispatch] = useReducer(
+    cartReducer,
+    INTIAL_STATE
+  );
+
+  // Set cart total and set cart Items functions
+  // const setCartTotal = (cartTotal) => {
+  //   dispatch(createAction(CART.SET_CART_TOTAL, cartTotal));
+  // };
+
+  const setCartItems = (cartItems) => {
+    const cartTotal = cartItems.reduce(
       (total, item) => total + item.quantity * item.price,
       0
     );
-    setCartTotal(newCartTotal);
-  }, [cartItems]);
+
+    const payload = {
+      cartTotal,
+      cartItems,
+    };
+
+    dispatch(createAction(CART.SET_CART_ITEMS, payload));
+  };
+
+  // useEffect(() => {
+  //   const newCartTotal = cartItems.reduce(
+  //     (total, item) => total + item.quantity * item.price,
+  //     0
+  //   );
+  //   setCartTotal(newCartTotal);
+  // }, [cartItems]);
 
   const addItemToCart = (item, checkout = undefined) => {
     setCartItems(addToCart(item, cartItems, checkout));

@@ -1,7 +1,15 @@
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
+.categories {
+  &__title {
+    text-transform: capitalize;
+    margin-bottom: 0.625rem;
+    font-weight: 500;
+  }
+
+  &__products {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
 }

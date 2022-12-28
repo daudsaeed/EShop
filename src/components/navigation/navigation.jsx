@@ -1,20 +1,31 @@
 import { Fragment, useState, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
+import { selectCurrentUser } from "../../store/user/user-selector";
+import { selectIsCartOpen } from "../../store/cart/cart-selector";
+import { setIsCartOpen } from "../../store/cart/cart-action";
+
 import Authentication from "../authentication/authentication";
 import { signOutUser } from "../../utils/firebase/firebase.util";
+
+import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
-import { UserContext } from "../../context/user.context";
-import { CartDropdownContext } from "../../context/cart-dropdown.context";
+
+// import { UserContext } from "../../context/user.context";
+// import { CartDropdownContext } from "../../context/cart-dropdown.context";
 
 import "./navigation.style.scss";
 
 const Navigation = () => {
   const [showForm, setShowForm] = useState(false);
-  const { currentUser } = useContext(UserContext);
-  const { cartShown, setCartShown } = useContext(CartDropdownContext);
+  const currentUser = useSelector(selectCurrentUser);
+  const cartShown = useSelector(selectIsCartOpen);
+  const dispatch = useDispatch();
+
+  // const { currentUser } = useContext(UserContext);
+  // const { cartShown, setCartShown } = useContext(CartDropdownContext);
   // const {
   console.log(currentUser);
 
@@ -24,13 +35,14 @@ const Navigation = () => {
   };
 
   const setCartShownHandler = () => {
-    setCartShown(cartShown ? false : true);
+    dispatch(setIsCartOpen(cartShown ? false : true));
   };
 
   const setShowFormHandler = () => {
     if (cartShown) {
       setCartShownHandler();
     }
+
     setShowForm(true);
   };
 

@@ -10,7 +10,17 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCn04eikTGTxYiXAoyBxckTMQ6OihDuKjU",
   authDomain: "crwn-clothing-db-733ba.firebaseapp.com",
@@ -80,3 +90,36 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+// Add products to the DB
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  documentsToAdd
+) => {
+  const productColectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  documentsToAdd.forEach((document) => {
+    const docRef = doc(productColectionRef, document.title.toLowerCase());
+    batch.set(docRef, document);
+  });
+
+  await batch.commit();
+  console.log("Done");
+};
+
+export const getCategoriesAndDocuments = async () => {
+  console.log("RAN");
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+
+  const querySnapsnhot = await getDocs(q);
+  return querySnapsnhot.docs.map((docSnapshot) => docSnapshot.data());
+  // const categoriesMap = querySnapsnhot.docs.reduce((acc, docSnapshot) => {
+  //   const { title, items } = docSnapshot.data();
+  //   acc[title.toLowerCase()] = items;
+  //   return acc;
+  // }, {});
+
+  // return categoriesMap;
+};

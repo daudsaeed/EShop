@@ -1,12 +1,18 @@
 import { useState, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { CartContext } from "../../context/cart.context";
+// import { CartContext } from "../../context/cart.context";
+import { addItemToCart } from "../../store/cart/cart-action";
+import { selectCartItems } from "../../store/cart/cart-selector";
 
 import "./product.style.scss";
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
   const [cartItems, setCartItems] = useState(1);
-  const { addItemToCart } = useContext(CartContext);
+  const cartItemsPresent = useSelector(selectCartItems);
+
+  // const { addItemToCart } = useContext(CartContext);
 
   // Helper Methods
   const setCartItemsHandler = (sign) => {
@@ -25,7 +31,7 @@ const ProductCard = ({ product }) => {
   // Add to cart handler
   const addToCartHandler = () => {
     const cartItem = Object.assign(product, { quantity: cartItems });
-    addItemToCart(cartItem);
+    dispatch(addItemToCart(cartItem, undefined, cartItemsPresent));
   };
 
   return (

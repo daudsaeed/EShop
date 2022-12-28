@@ -1,11 +1,13 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
+// import { CartContext } from "../../context/cart.context";
+
+import { selectCartItems } from "../../store/cart/cart-selector";
 import Button from "../button/button.component";
-import { CartContext } from "../../context/cart.context";
-
 import CartItem from "../cart-item/cart-item.component";
 import "./cart-dropdown.style.scss";
-import { Link } from "react-router-dom";
 
 // Prooblems
 // (1): Add items to the cart => use the context here
@@ -17,7 +19,8 @@ import { Link } from "react-router-dom";
 // let make the dropdown :)
 
 const CartDropdown = () => {
-  const { cartItems } = useContext(CartContext);
+  // const { cartItems } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
   console.log(cartItems);
   return (
     <div className="cart-dropdown">

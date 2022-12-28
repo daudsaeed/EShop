@@ -1,0 +1,30 @@
+.categoryPreview {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-title {
+      text-transform: capitalize;
+      margin-bottom: 0.625rem;
+      font-weight: 500;
+    }
+
+    &-link {
+      color: var(--color-secondary);
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__products {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+}
