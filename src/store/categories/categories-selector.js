@@ -2,6 +2,11 @@ import { createSelector } from "reselect";
 
 const selectCategoriesReducer = (state) => state.categories;
 
+export const selectIsLoading = createSelector(
+  [selectCategoriesReducer],
+  (categoriesSlice) => categoriesSlice.isLoading
+);
+
 const selectCategories = createSelector(
   [selectCategoriesReducer],
   (categoriesSlice) => categoriesSlice.categories

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import { useSelector } from "react-redux";
 
 import {
@@ -36,7 +36,7 @@ const Checkout = () => {
 
         {/* Cart Items  */}
         {cartItems.map((cartItem) => (
-          <CheckoutItem cartItem={cartItem} />
+          <CheckoutItem cartItem={cartItem} key={cartItem.id} />
         ))}
 
         {/* Display the cart total */}

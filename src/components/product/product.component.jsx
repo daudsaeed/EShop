@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // import { CartContext } from "../../context/cart.context";

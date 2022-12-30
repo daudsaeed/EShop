@@ -109,7 +109,6 @@ export const addCollectionAndDocuments = async (
 };
 
 export const getCategoriesAndDocuments = async () => {
-  console.log("RAN");
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
 

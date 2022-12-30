@@ -1,9 +1,13 @@
+html {
+  height: 100%;
+}
 body {
   margin: 0;
   font-family: "Jost";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #eee;
+  height: 100%;
 }
 
 code {
@@ -34,4 +38,8 @@ a {
 .container {
   width: 90%;
   margin: auto;
+}
+
+#root {
+  height: 100%;
 }

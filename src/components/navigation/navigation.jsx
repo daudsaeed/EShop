@@ -1,4 +1,4 @@
-import { Fragment, useState, useContext } from "react";
+import { Fragment, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -27,7 +27,7 @@ const Navigation = () => {
   // const { currentUser } = useContext(UserContext);
   // const { cartShown, setCartShown } = useContext(CartDropdownContext);
   // const {
-  console.log(currentUser);
+  // console.log(currentUser);
 
   // Helper methods
   const signOutHandler = async () => {

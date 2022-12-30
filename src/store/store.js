@@ -1,7 +1,11 @@
 import { compose, createStore, applyMiddleware } from "redux";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
+import thunk from "redux-thunk";
 
 import { rootReducer } from "./root-reducer";
+import { configureStore } from "@reduxjs/toolkit";
 
 // root-reducer (combined reducer) => new file
 
@@ -15,7 +19,32 @@ import { rootReducer } from "./root-reducer";
 //   console.log("Next State:", store.getState());
 // };
 
-const middlewares = [logger];
-const composedEnchaners = compose(applyMiddleware(...middlewares));
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["cart"],
+};
 
-export const store = createStore(rootReducer, undefined, composedEnchaners);
+const persistantReducer = persistReducer(persistConfig, rootReducer);
+const middleWares = [thunk, logger];
+
+const composedEnchaner =
+  (process.env.NODE_ENV !== "production" &&
+    window &&
+    window.__REDUX_DEVTOOLS_EXTENSION__) ||
+  compose;
+const composedEnchaners = composedEnchaner(applyMiddleware(...middleWares));
+
+// export const store = createStore(
+//   persistantReducer,
+//   undefined,
+//   composedEnchaners
+// );
+
+export const store = configureStore({
+  reducer: persistantReducer,
+  devTools: process.env.NODE_ENV !== "production",
+  middleware: [thunk],
+});
+
+export const persistor = persistStore(store);
