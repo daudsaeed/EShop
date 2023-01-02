@@ -4,9 +4,10 @@ import { Routes, Route } from "react-router-dom";
 
 import {
   onAuthStateChangedListener,
+  getCurrentUser,
   createUserDocumentFromAuth,
 } from "./utils/firebase/firebase.util";
-import { setCurrentUser } from "./store/user/user-action";
+import { checkUserSession, setCurrentUser } from "./store/user/user-action";
 
 import Navigation from "./components/navigation/navigation";
 import Checkout from "./routes/checkout/checkout.component";
@@ -16,13 +17,15 @@ function App() {
   const dispatch = useDispatch(); // but there is only one dispatch in redux so its
   // upto the team to put dispatch in the dependencies array
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) createUserDocumentFromAuth(user);
-      dispatch(setCurrentUser(user));
-    });
+    // const unsubscribe = onAuthStateChangedListener((user) => {
+    //   if (user) createUserDocumentFromAuth(user);
+    //   dispatch(setCurrentUser(user));
+    // });
 
-    return unsubscribe;
-  }, [dispatch]);
+    dispatch(checkUserSession());
+
+    // return unsubscribe;
+  }, []);
 
   // How to show a fucking navbar now that display on every page
   return (

@@ -17,6 +17,7 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 // import { CartDropdownContext } from "../../context/cart-dropdown.context";
 
 import "./navigation.style.scss";
+import { signOut } from "../../store/user/user-action";
 
 const Navigation = () => {
   const [showForm, setShowForm] = useState(false);
@@ -30,8 +31,9 @@ const Navigation = () => {
   // console.log(currentUser);
 
   // Helper methods
-  const signOutHandler = async () => {
-    await signOutUser();
+  const signOutHandler = () => {
+    // await signOutUser();
+    dispatch(signOut());
   };
 
   const setCartShownHandler = () => {

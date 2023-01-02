@@ -1,5 +1,7 @@
 import { Fragment, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { emailSignIn, googleSignIn } from "../../store/user/user-action";
 
 import {
   signInWithGooglePopup,
@@ -8,6 +10,7 @@ import {
 import Button from "../button/button.component";
 
 const SigninForm = ({ auth, setAuth, setShowForm }) => {
+  const dispatch = useDispatch();
   const setLoginFieldsObj = {
     email: "",
     password: "",
@@ -33,25 +36,27 @@ const SigninForm = ({ auth, setAuth, setShowForm }) => {
       alert("Email and passowrd are required");
     }
 
-    try {
-      const userCredentails = await signInWithAuthEmailAndPassword(
-        email,
-        password
-      );
-      console.log(userCredentails.user);
-    } catch (ex) {
-      switch (ex.code) {
-        case "auth/wrong-password":
-          alert("Wrong password");
-          break;
-        case "auth/user-not-found":
-          alert("No user with this email");
-          break;
-        default:
-          alert(ex.code);
-          break;
-      }
-    }
+    // try {
+    //   const userCredentails = await signInWithAuthEmailAndPassword(
+    //     email,
+    //     password
+    //   );
+    //   console.log(userCredentails.user);
+    // } catch (ex) {
+    //   switch (ex.code) {
+    //     case "auth/wrong-password":
+    //       alert("Wrong password");
+    //       break;
+    //     case "auth/user-not-found":
+    //       alert("No user with this email");
+    //       break;
+    //     default:
+    //       alert(ex.code);
+    //       break;
+    //   }
+    // }
+
+    dispatch(emailSignIn(email, password));
   };
 
   // ################# JSX #################################
@@ -118,8 +123,10 @@ const SigninForm = ({ auth, setAuth, setShowForm }) => {
           <div
             className="google-btn"
             onClick={async () => {
-              const userCredentails = await signInWithGooglePopup();
-              console.log(userCredentails.user);
+              // const userCredentails = await signInWithGooglePopup();
+              // console.log(userCredentails.user);
+
+              dispatch(googleSignIn());
             }}
           >
             <div className="google-icon-wrapper">

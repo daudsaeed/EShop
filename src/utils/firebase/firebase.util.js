@@ -72,7 +72,7 @@ export const createUserDocumentFromAuth = async (
   }
 
   // What if the user snapshot exists
-  return docRef;
+  return userSnapshot;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -121,4 +121,19 @@ export const getCategoriesAndDocuments = async () => {
   // }, {});
 
   // return categoriesMap;
+};
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubcribe = onAuthStateChanged(
+      auth,
+      (user) => {
+        if (user) {
+          unsubcribe();
+          resolve(user);
+        }
+      },
+      reject
+    );
+  });
 };

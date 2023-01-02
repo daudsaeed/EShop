@@ -1,5 +1,7 @@
 import { Fragment, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../store/user/user-action";
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -9,6 +11,7 @@ import Button from "../button/button.component";
 
 // ################ Signup form Componment  ###############
 const SignupForm = ({ auth, setShowForm, setAuth }) => {
+  const dispatch = useDispatch();
   // ###################### VARIBALES #####################
   const signUpFieldsObj = {
     displayName: "",
@@ -39,18 +42,18 @@ const SignupForm = ({ auth, setShowForm, setAuth }) => {
       return;
     }
     try {
-      const userCredentials = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      // If the userDocRef is not then user already exists
-      const userDocRef = await createUserDocumentFromAuth(
-        userCredentials.user,
-        { displayName }
-      );
-      console.log(userCredentials);
-      console.log(` Authentication: ${userDocRef}`);
+      // const userCredentials = await createAuthUserWithEmailAndPassword(
+      //   email,
+      //   password
+      // );
+      // // If the userDocRef is not then user already exists
+      // const userDocRef = await createUserDocumentFromAuth(
+      //   userCredentials.user,
+      //   { displayName }
+      // );
+      // console.log(userCredentials);
+      // console.log(` Authentication: ${userDocRef}`);
+      dispatch(signUp(displayName, email, password));
     } catch (ex) {
       switch (ex.code) {
         case "auth/email-already-in-use":
